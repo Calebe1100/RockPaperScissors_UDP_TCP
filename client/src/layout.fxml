@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<TilePane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="362.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7c838a" height="75.0" stroke="#9a8d8d" strokeType="INSIDE" width="601.0" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Minha aplicação que usa Soquetes">
+         <font>
+            <Font size="22.0" />
+         </font>
+         <TilePane.margin>
+            <Insets bottom="10.0" />
+         </TilePane.margin>
+      </Text>
+      <Group TilePane.alignment="CENTER">
+         <TilePane.margin>
+            <Insets />
+         </TilePane.margin>
+         <children>
+            <AnchorPane layoutY="10.0" prefHeight="65.0" prefWidth="600.0">
+               <children>
+                  <RadioButton alignment="TOP_LEFT" contentDisplay="BOTTOM" layoutX="50.0" layoutY="11.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="17.0" prefWidth="56.0" text="TCP">
+                     <cursor>
+                        <Cursor fx:constant="W_RESIZE" />
+                     </cursor>
+                  </RadioButton>
+                  <RadioButton alignment="TOP_LEFT" contentDisplay="BOTTOM" layoutX="50.0" layoutY="32.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="17.0" prefWidth="56.0" text="UDP">
+                     <cursor>
+                        <Cursor fx:constant="W_RESIZE" />
+                     </cursor>
+                  </RadioButton>
+                  <TextField alignment="TOP_LEFT" layoutX="335.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="251.0" />
+                  <Text layoutX="44.0" layoutY="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de conexão:" wrappingWidth="103.08203125" />
+                  <Text layoutX="335.0" layoutY="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ip da conexão:" wrappingWidth="90.08203125" />
+               </children>
+            </AnchorPane>
+         </children>
+      </Group>
+      <Group>
+         <children>
+            <Text layoutX="-112.0" layoutY="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pedra, papel ou tesoura?" wrappingWidth="335.08203125" />
+            <ChoiceBox layoutX="49.0" layoutY="-16.0" prefWidth="150.0" />
+         </children>
+      </Group>
+   </children>
+</TilePane>

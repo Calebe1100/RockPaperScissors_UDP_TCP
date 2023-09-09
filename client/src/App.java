@@ -1,20 +1,22 @@
+import java.io.IOException;
+
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
 
     @Override
-    public void start(Stage primaryStage) {
-        Label label = new Label("Tela básica JavaFX");
-        StackPane root = new StackPane();
-        root.getChildren().add(label);
-        Scene scene = new Scene(root, 300, 250);
+    public void start(Stage primaryStage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("layout.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene screen = new Scene(root);
         primaryStage.setTitle("Tela básica JavaFX");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(screen);
         primaryStage.show();
+
     }
 
     public static void main(String[] args) {
