@@ -6,10 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class App extends Application {
+public class AppClient extends Application {
+    Stage _primStage;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        _primStage = primaryStage;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("layout.fxml"));
         Parent root = fxmlLoader.load();
         Scene screen = new Scene(root);
@@ -21,5 +23,9 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public void closeStage() {
+        _primStage.close();
     }
 }

@@ -1,7 +1,7 @@
 import java.net.*;
 import java.io.*;
 
-public class App {
+public class AppServer {
     public static void main(String[] args){
         
         new Thread(() -> ServerTCP()).start();
