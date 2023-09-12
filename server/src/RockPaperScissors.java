@@ -16,6 +16,7 @@ public class RockPaperScissors {
 
         if (serverMove.equalsIgnoreCase(clientMovement)) {
             serverAnswer = serverMove + ";empate";
+            return serverAnswer;
         }
 
         if (clientMovement.equalsIgnoreCase("pedra") && serverMove.equals("tesoura") ||
