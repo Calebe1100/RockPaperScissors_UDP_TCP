@@ -1,11 +1,17 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.Socket;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
@@ -75,33 +81,47 @@ public class ConfigSocketController {
                         5000);
                 socket.send(packageToSend);
 
-                // byte[] receiver = new byte[1000];
-                // DatagramPacket receiverPackage = new DatagramPacket(receiver,
-                // receiver.length);
-                // socket.receive(receiverPackage);
+                byte[] receiver = new byte[1000];
+                DatagramPacket receiverPackage = new DatagramPacket(receiver,
+                        receiver.length);
+                socket.receive(receiverPackage);
 
-                String receiverMessage = "teste";
-                this.showMessage(receiverMessage);
-
-                // SE NÃO TIVER MAIS NADA PARA FAZER
-                // finaliza a conexão
+                String receiverMessage = new String(receiverPackage.getData());
+                this.showMessage(receiverMessage, "Resultado:");
                 socket.close();
             } catch (Exception e) {
-
+                this.showMessage(e.getMessage(), "Error:");
             }
         } else {
+            try (Socket socket = new Socket(ipField.getText(), 5100)) {
+
+                PrintWriter outBuffer = new PrintWriter(socket.getOutputStream(), true);
+                BufferedReader inBuffer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+                String messageToSend = selectOption.valueProperty().getValue();
+                outBuffer.println(messageToSend);
+
+                String messageReceived = inBuffer.readLine();
+
+                this.showMessage(messageReceived, "Resultado:");
+
+                outBuffer.close();
+                inBuffer.close();
+                socket.close();
+            } catch (Exception e) {
+                this.showMessage(e.getMessage(), "Error:");
+            }
 
         }
 
     }
 
-    private void showMessage(String receiverMessage) {
-        this.togglePopupToMessageMode();
-    }
-
-    private void togglePopupToMessageMode() {
-        connectionGroup.setVisible(false);
-        fieldResult.setVisible(true);
+    private void showMessage(String receiverMessage, String title) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(receiverMessage);
+        alert.showAndWait();
     }
 
     @FXML
