@@ -10,6 +10,7 @@ public class AppClient extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        ConfigSocketController._primaryStage = primaryStage;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("layout.fxml"));
         Parent root = fxmlLoader.load();
         Scene screen = new Scene(root);

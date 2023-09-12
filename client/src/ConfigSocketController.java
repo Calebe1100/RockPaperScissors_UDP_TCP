@@ -18,10 +18,15 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class ConfigSocketController {
 
+    public static Stage _primaryStage;
+
     private boolean isConnectionUDP = false;
+
+    private static String _cancel = "cancel";
 
     public void initialize() {
         ToggleGroup toggleGroup = new ToggleGroup();
@@ -59,15 +64,19 @@ public class ConfigSocketController {
 
     @FXML
     void onCancel(ActionEvent event) {
-
+        sendMessage(true);
     }
 
     @FXML
     void onSend(ActionEvent event) {
-        if (this.isConnectionUDP) {
+        sendMessage(false);
+    }
+
+    private void sendMessage(boolean isCancel) {
+        if (this.isConnectionUDP || isCancel) {
             try (DatagramSocket socket = new DatagramSocket()) {
                 byte[] messageToSend;
-                messageToSend = selectOption.valueProperty().getValue().getBytes();
+                messageToSend = isCancel ? _cancel.getBytes() : selectOption.valueProperty().getValue().getBytes();
                 InetAddress ip = InetAddress.getByName(ipField.getText());
                 DatagramPacket packageToSend = new DatagramPacket(messageToSend,
                         messageToSend.length,
@@ -81,33 +90,42 @@ public class ConfigSocketController {
                 socket.receive(receiverPackage);
 
                 String receiverMessage = new String(receiverPackage.getData());
-                this.showMessage(receiverMessage, "Resultado:");
+
                 socket.close();
+                if (!isCancel)
+                    this.showMessage(receiverMessage, "Resultado:");
+
             } catch (Exception e) {
                 this.showMessage(e.getMessage(), "Error:");
             }
-        } else {
+        }
+
+        if (!this.isConnectionUDP || isCancel) {
             try (Socket socket = new Socket(ipField.getText(), 5100)) {
 
                 PrintWriter outBuffer = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader inBuffer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-                String messageToSend = selectOption.valueProperty().getValue();
+                String messageToSend = isCancel ? _cancel : selectOption.valueProperty().getValue();
                 outBuffer.println(messageToSend);
 
                 String messageReceived = inBuffer.readLine();
 
-                this.showMessage(messageReceived, "Resultado:");
-
                 outBuffer.close();
                 inBuffer.close();
                 socket.close();
+                if (!isCancel)
+                    this.showMessage(messageReceived, "Resultado:");
+
             } catch (Exception e) {
                 this.showMessage(e.getMessage(), "Error:");
             }
 
+            if (isCancel) {
+                System.exit(0);
+                _primaryStage.close();
+            }
         }
-
     }
 
     private void showMessage(String receiverMessage, String title) {
