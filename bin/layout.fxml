@@ -31,12 +31,12 @@
                <children>
                   <RadioButton fx:id="radioTCP" alignment="TOP_LEFT" contentDisplay="BOTTOM" layoutX="50.0" layoutY="11.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setRadioTCP" prefHeight="17.0" prefWidth="56.0" text="TCP">
                      <cursor>
-                        <Cursor fx:constant="NONE" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </RadioButton>
                   <RadioButton fx:id="radioUDP" alignment="TOP_LEFT" contentDisplay="BOTTOM" layoutX="50.0" layoutY="32.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#setRadioUDP" prefHeight="17.0" prefWidth="56.0" text="UDP">
                      <cursor>
-                        <Cursor fx:constant="NONE" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </RadioButton>
                   <TextField fx:id="ipField" alignment="TOP_LEFT" layoutX="335.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="251.0" />
