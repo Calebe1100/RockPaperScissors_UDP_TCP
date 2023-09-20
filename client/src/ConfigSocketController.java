@@ -131,9 +131,14 @@ public class ConfigSocketController {
     private void showMessage(String receiverMessage, String title) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(receiverMessage);
+        alert.setHeaderText(this.formatReceiverMessage(receiverMessage)[1].toUpperCase() + "!!");
+        alert.setContentText("Seu adversário escolheu: " + this.formatReceiverMessage(receiverMessage)[0]);
         alert.showAndWait();
+    }
+
+    private String[] formatReceiverMessage(String receiverMessage) {
+        String[] receiverList = receiverMessage.split(";");
+        return receiverList;
     }
 
     @FXML

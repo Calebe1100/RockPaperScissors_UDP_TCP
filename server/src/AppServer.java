@@ -62,6 +62,7 @@ public class AppServer {
         try (DatagramSocket serverPort = new DatagramSocket(5000);) {
             DatagramPacket packetReceived;
             while (true) {
+                System.out.println("Aguardando conexão UDP");
                 byte[] packet = new byte[100];
                 packetReceived = new DatagramPacket(packet, packet.length);
 
