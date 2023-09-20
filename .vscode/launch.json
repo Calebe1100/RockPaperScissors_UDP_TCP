@@ -3,7 +3,7 @@
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [
+    "configurations": [    
         {
             "type": "java",
             "name": "Current File",
@@ -12,11 +12,18 @@
         },
         {
             "type": "java",
-            "name": "App",
+            "name": "AppClient",
             "request": "launch",
-            "mainClass": "App",
+            "mainClass": "AppClient",
             "projectName": "RockPaperScissors_UDP_TCP_59d96ddb",
-            "vmArgs": "--module-path \"C:/Users/Vertown/Downloads/openjfx-17.0.8_windows-x64_bin-sdk/javafx-sdk-17.0.8/lib\" --add-modules=javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path \"C:/Users/Vertown/Downloads/openjfx-20.0.2_windows-x64_bin-sdk/javafx-sdk-20.0.2/lib\" --add-modules=javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "AppServer",
+            "request": "launch",
+            "mainClass": "AppServer",
+            "projectName": "RockPaperScissors_UDP_TCP_59d96ddb"
         }
     ]
 }
